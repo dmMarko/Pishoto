@@ -15,6 +15,7 @@ public class RobotMap {
     public static final int ELEVATOR_SLAVE_MOTOR_DEVICE_NUM = 0;
     
     public static final int ARM_MOTOR_CHANNLE = 0;
+    public static final int ARM_ENCODER_CHANNLE = 0;
 
     public static final int MOVEMENT_RIGHT_MASTER_MOTOR_DEVICE_NUM = 0;
     public static final int MOVEMENT_RIGHT_SLAVE1_MOTOR_DEVICE_NUM = 0;

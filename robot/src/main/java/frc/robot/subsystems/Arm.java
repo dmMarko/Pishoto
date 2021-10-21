@@ -14,13 +14,18 @@ import frc.robot.RobotMap;
 
 public class Arm extends SubsystemBase {
   private WPI_TalonSRX motor;
+  private AnalogInput encoder;
   /**
    * Creates a new Arm.
    */
+
   public Arm() {
+    encoder=new AnalogInput(RobotMap.ARM_ENCODER_CHANNLE);
     motor = new WPI_TalonSRX(RobotMap.ARM_MOTOR_CHANNLE);
   }
-
+  public void setArmPos(double armPos){
+    motor.set(ControlMode.PercentOutput,armPos);
+}
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
