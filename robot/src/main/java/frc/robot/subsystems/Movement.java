@@ -29,7 +29,7 @@ public class Movement extends SubsystemBase {
     rightSlave2= new WPI_TalonSRX(RobotMap.MOVEMENT_RIGHT_SLAVE2_MOTOR_DEVICE_NUM);
     leftMaster = new WPI_TalonSRX(RobotMap.MOVEMENT_LEFT_MASTER_MOTOR_DEVICE_NUM);
     leftSlave1 = new WPI_TalonSRX(RobotMap.MOVEMENT_LEFT_SLAVE1_MOTOR_DEVICE_NUM);
-    leftSlave2= new WPI_TalonSRX(RobotMap.MOVEMENT_LEFT_SLAVE2_MOTOR_DEVICE_NUM);
+    leftSlave2 = new WPI_TalonSRX(RobotMap.MOVEMENT_LEFT_SLAVE2_MOTOR_DEVICE_NUM);
 
     rightSlave1.set(ControlMode.Follower, rightMaster.getDeviceID());
     rightSlave2.set(ControlMode.Follower, rightMaster.getDeviceID());

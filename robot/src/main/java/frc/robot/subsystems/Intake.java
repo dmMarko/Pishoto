@@ -10,6 +10,7 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotMap;
 
@@ -31,6 +32,18 @@ public class Intake extends SubsystemBase {
     holderPiston = new DoubleSolenoid(RobotMap.INTAKE_HOLDER_PISTON_FORWARD_CHANNLE, RobotMap.INTAKE_HOLDER_PISTON_REVERSE_CHANNLE);
     pushHolderPiston = new DoubleSolenoid(RobotMap.INTAKE_PUSH_HOLDER_PISTON_FORWARD_CHANNLE, RobotMap.INTAKE_PUSH_HOLDER_PISTON_REVERSE_CHANNLE);
     floorPiston = new DoubleSolenoid(RobotMap.INTAKE_FLOOR_PISTON_FORWARD_CHANNLE, RobotMap.INTAKE_FLOOR_PISTON_REVERSE_CHANNLE);
+  }
+
+  public void setHolderPistonValue(Value value){
+    holderPiston.set(value);
+  }
+
+  public void setPushHolderPistonValue(Value value){
+    pushHolderPiston.set(value);
+  }
+
+  public void setFloorPistonValue(Value value){
+    floorPiston.set(value);
   }
 
   @Override
