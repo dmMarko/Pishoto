@@ -7,6 +7,7 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -29,6 +30,11 @@ public class Movement extends SubsystemBase {
     leftMaster = new WPI_TalonSRX(RobotMap.MOVEMENT_LEFT_MASTER_MOTOR_DEVICE_NUM);
     leftSlave1 = new WPI_TalonSRX(RobotMap.MOVEMENT_LEFT_SLAVE1_MOTOR_DEVICE_NUM);
     leftSlave2= new WPI_TalonSRX(RobotMap.MOVEMENT_LEFT_SLAVE2_MOTOR_DEVICE_NUM);
+
+    rightSlave1.set(ControlMode.Follower, rightMaster.getDeviceID());
+    rightSlave2.set(ControlMode.Follower, rightMaster.getDeviceID());
+    leftSlave1.set(ControlMode.Follower, leftMaster.getDeviceID());
+    leftSlave2.set(ControlMode.Follower, leftMaster.getDeviceID());
   }
 
   @Override
