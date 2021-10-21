@@ -5,7 +5,7 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands;
+package frc.robot.commands.intake;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
@@ -14,8 +14,8 @@ import frc.robot.RobotContainer;
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/latest/docs/software/commandbased/convenience-features.html
-public class OutTakeDisc extends InstantCommand {
-  public OutTakeDisc() {
+public class CollectDiskFromFloor extends InstantCommand {
+  public CollectDiskFromFloor() {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(RobotContainer.intake);
   }
@@ -24,6 +24,9 @@ public class OutTakeDisc extends InstantCommand {
   @Override
   public void initialize() {
     RobotContainer.intake.setHolderPistonValue(Value.kReverse);
-    RobotContainer.intake.setPushHolderPistonValue(Value.kReverse);
+    RobotContainer.intake.setFloorPistonValue(Value.kForward);
+    RobotContainer.intake.setPushHolderPistonValue(Value.kForward);
+    RobotContainer.intake.setHolderPistonValue(Value.kForward);
+    RobotContainer.intake.setFloorPistonValue(Value.kReverse);
   }
 }

@@ -1,11 +1,14 @@
+package frc.robot.commands.arm;
+
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import frc.robot.RobotContainer;
 
-public class setArmPerc extends InstantCommand {
+public class setArmPos extends InstantCommand {
 
-double armPos;
-    public setArmPerc(double armPos) {
+  double armPos;
+    public setArmPos(double armPos) {
         this.armPos=armPos;
-        addRequirements(RobotContainer.arm());
+        addRequirements(RobotContainer.arm);
     
     }
     @Override
