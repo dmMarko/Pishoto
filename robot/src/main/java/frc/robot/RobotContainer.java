@@ -9,11 +9,13 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
+import frc.LibPurple.sensors.ConsoleJoystick;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.Movement;
 import edu.wpi.first.wpilibj2.command.Command;
 
 /**
@@ -28,11 +30,12 @@ public class RobotContainer {
   public static final Intake intake = new Intake();
   public static final Elevator elevator = new Elevator();
   public static final Arm arm = new Arm();
-
+  public static final Movement drive = new Movement();
 
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
-
-
+  
+  public static final ConsoleJoystick driver = new ConsoleJoystick(0);
+  public static final ConsoleJoystick commander = new ConsoleJoystick(1);
 
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.

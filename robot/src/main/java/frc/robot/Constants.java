@@ -7,6 +7,8 @@
 
 package frc.robot;
 
+import frc.LibPurple.control.PIDvalue;
+
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide
  * numerical or boolean constants. This class should not be used for any other
@@ -18,5 +20,9 @@ package frc.robot;
  * wherever the constants are needed, to reduce verbosity.
  */
 public final class Constants {
+    // drive
+    // The location are relative to the arm being far away from you.
+    public static final PIDvalue leftSidePID = new PIDvalue(1, 0, 0);
+    public static final PIDvalue rightSidePID = new PIDvalue(1, 0, 0);
     public static final double COLLECT_DISK_FROM_FLOOR_SPIN_POWER = 0;
 }
