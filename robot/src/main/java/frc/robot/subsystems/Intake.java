@@ -7,6 +7,7 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
@@ -15,8 +16,8 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotMap;
 
 public class Intake extends SubsystemBase {
-  private WPI_TalonSRX forwardMotor;
-  private WPI_TalonSRX backwardMotor;
+  private WPI_TalonSRX upperMotor;
+  private WPI_TalonSRX lowerMotor;
 
   private DoubleSolenoid holderPiston;
   private DoubleSolenoid pushHolderPiston;
@@ -26,24 +27,35 @@ public class Intake extends SubsystemBase {
    * Creates a new Intake.
    */
   public Intake() {
-    forwardMotor = new WPI_TalonSRX(RobotMap.INTAKE_FORWARD_MOTOR_DEVICE_NUM);
-    backwardMotor = new WPI_TalonSRX(RobotMap.INTAKE_BACKWARD_MOTOR_DEVICE_NUM);
+    upperMotor = new WPI_TalonSRX(RobotMap.INTAKE_UPPER_MOTOR_DEVICE_NUM);
+    lowerMotor = new WPI_TalonSRX(RobotMap.INTAKE_LOWER_MOTOR_DEVICE_NUM);
 
-    holderPiston = new DoubleSolenoid(RobotMap.INTAKE_HOLDER_PISTON_FORWARD_CHANNLE, RobotMap.INTAKE_HOLDER_PISTON_REVERSE_CHANNLE);
-    pushHolderPiston = new DoubleSolenoid(RobotMap.INTAKE_PUSH_HOLDER_PISTON_FORWARD_CHANNLE, RobotMap.INTAKE_PUSH_HOLDER_PISTON_REVERSE_CHANNLE);
-    floorPiston = new DoubleSolenoid(RobotMap.INTAKE_FLOOR_PISTON_FORWARD_CHANNLE, RobotMap.INTAKE_FLOOR_PISTON_REVERSE_CHANNLE);
+    holderPiston = new DoubleSolenoid(RobotMap.INTAKE_HOLDER_PISTON_FORWARD_CHANNLE,
+        RobotMap.INTAKE_HOLDER_PISTON_REVERSE_CHANNLE);
+    pushHolderPiston = new DoubleSolenoid(RobotMap.INTAKE_PUSH_HOLDER_PISTON_FORWARD_CHANNLE,
+        RobotMap.INTAKE_PUSH_HOLDER_PISTON_REVERSE_CHANNLE);
+    floorPiston = new DoubleSolenoid(RobotMap.INTAKE_FLOOR_PISTON_FORWARD_CHANNLE,
+        RobotMap.INTAKE_FLOOR_PISTON_REVERSE_CHANNLE);
   }
 
-  public void setHolderPistonValue(Value value){
+  public void setHolderPistonValue(Value value) {
     holderPiston.set(value);
   }
 
-  public void setPushHolderPistonValue(Value value){
+  public void setPushHolderPistonValue(Value value) {
     pushHolderPiston.set(value);
   }
 
-  public void setFloorPistonValue(Value value){
+  public void setFloorPistonValue(Value value) {
     floorPiston.set(value);
+  }
+
+  public void spinUpperWheel(double power) {
+    upperMotor.set(ControlMode.PercentOutput, power);
+  }
+
+  public void spinLowerWheel(double power) {
+    lowerMotor.set(ControlMode.PercentOutput, power);
   }
 
   @Override
