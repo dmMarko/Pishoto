@@ -25,4 +25,13 @@ public final class Constants {
     public static final PIDvalue leftSidePID = new PIDvalue(1, 0, 0);
     public static final PIDvalue rightSidePID = new PIDvalue(1, 0, 0);
     public static final double COLLECT_DISK_FROM_FLOOR_SPIN_POWER = 0;
+    public static final PIDvalue ARM_PID = new PIDvalue(1, 0, 0);
+
+    // arm
+    public static final double armMinInput = 0;
+    public static final double armMaxInput = 0;
+    public static final double armMinOutput = 0;
+    public static final double armMaxOutput = 0;
+    public static final double armTolerance = 6;    
+
 }

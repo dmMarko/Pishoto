@@ -22,12 +22,24 @@ public class Arm extends SubsystemBase {
    */
 
   public Arm() {
-    encoder=new AnalogInput(RobotMap.ARM_ENCODER_CHANNLE);
+    encoder = new AnalogInput(RobotMap.ARM_ENCODER_CHANNLE);
     motor = new WPI_TalonSRX(RobotMap.ARM_MOTOR_CHANNLE);
+    motor.setSelectedSensorPosition(sensorPos)
   }
-  public void setArmPos(double armPos){
-    motor.set(ControlMode.PercentOutput,armPos);
-}
+  
+  public void setPower(double power){
+    motor.set(ControlMode.PercentOutput, armPos);
+  }
+
+  public void setPosition(double pos) {
+    motor.set(ControlMode.Position, pos);
+  }
+
+  // TODO: return currect values.
+  public double getPos() {
+    return encoder.getValue();
+  }
+
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
