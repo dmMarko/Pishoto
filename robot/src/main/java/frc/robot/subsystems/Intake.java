@@ -30,9 +30,8 @@ public class Intake extends SubsystemBase {
     upperMotor = new WPI_TalonSRX(RobotMap.INTAKE_UPPER_MOTOR_DEVICE_NUM);
     lowerMotor = new WPI_TalonSRX(RobotMap.INTAKE_LOWER_MOTOR_DEVICE_NUM);
 
-    holderPiston = new DoubleSolenoid(RobotMap.INTAKE_HOLDER_PISTON_FORWARD_CHANNLE,
-        RobotMap.INTAKE_HOLDER_PISTON_REVERSE_CHANNLE);
-    pushHolderPiston = new DoubleSolenoid(RobotMap.INTAKE_PUSH_HOLDER_PISTON_FORWARD_CHANNLE,
+    holderPiston = new DoubleSolenoid(RobotMap.INTAKE_HOLDER_PISTON_FORWARD_CHANNLE, RobotMap.INTAKE_HOLDER_PISTON_REVERSE_CHANNLE);
+    pushHolderPiston = new DoubleSolenoid(RobotMap.INTAKE_PUSH_HOLDER_PISTON_FORWARD_CHANNLE, 
         RobotMap.INTAKE_PUSH_HOLDER_PISTON_REVERSE_CHANNLE);
     floorPiston = new DoubleSolenoid(RobotMap.INTAKE_FLOOR_PISTON_FORWARD_CHANNLE,
         RobotMap.INTAKE_FLOOR_PISTON_REVERSE_CHANNLE);

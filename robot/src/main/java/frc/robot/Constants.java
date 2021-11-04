@@ -22,16 +22,26 @@ import frc.LibPurple.control.PIDvalue;
 public final class Constants {
     // drive
     // The location are relative to the arm being far away from you.
-    public static final PIDvalue leftSidePID = new PIDvalue(1, 0, 0);
-    public static final PIDvalue rightSidePID = new PIDvalue(1, 0, 0);
+    public static final PIDvalue LEFT_SIDE_PID = new PIDvalue(1, 0, 0);
+    public static final PIDvalue RIGHT_SIDE_PID = new PIDvalue(1, 0, 0);
+
+    public static final double COLLECT_BALL_TOP_SPIN_POWER = -0;
+    public static final double COLLECT_BALL_BOTTOM_SPIN_POWER = 0;
     public static final double COLLECT_DISK_FROM_FLOOR_SPIN_POWER = 0;
-    public static final PIDvalue ARM_PID = new PIDvalue(1, 0, 0);
+
+    // arm positions
+    public static final double ARM_FLOOR_ANGLE = 0;
+    public static final double ARM_DEFAULT_POSITION = 0 ;
 
     // arm
-    public static final double armMinInput = 0;
-    public static final double armMaxInput = 0;
-    public static final double armMinOutput = 0;
-    public static final double armMaxOutput = 0;
-    public static final double armTolerance = 6;    
+    public static final PIDvalue ARM_PID = new PIDvalue(1, 0, 0);
+    public static final double ARM_PID_KP = .5;
+    public static final double ARM_PID_KI = 0; //0.000013
+    public static final double ARM_PID_KD = 0;
+    // public static final double ARM_ZERO_POS = 0;
+    public static final double ARM_MIN_INPUT = 0;
+    public static final double ARM_MAX_INPUT = 3639;
+    // public static final double ARM_MIN_OUTPUT = 0;
+    // public static final double ARM_MAX_OUTPUT = 0;  
 
 }

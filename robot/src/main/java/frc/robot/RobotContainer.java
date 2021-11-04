@@ -7,16 +7,23 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.LibPurple.sensors.ConsoleJoystick;
 import frc.robot.commands.ExampleCommand;
+import frc.robot.commands.arm.SetArmAngle;
+import frc.robot.commands.arm.SetArmPos;
+// import frc.robot.commands.intake.CollectDiskFromFloor;
+// import frc.robot.commands.intake.TakeDisc;
 import frc.robot.subsystems.Arm;
-import frc.robot.subsystems.Elevator;
+// import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.Intake;
-import frc.robot.subsystems.Movement;
+// import frc.robot.subsystems.Movement;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import edu.wpi.first.wpilibj2.command.button.POVButton;
 
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
@@ -28,14 +35,23 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   public static final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
   public static final Intake intake = new Intake();
-  public static final Elevator elevator = new Elevator();
+  // public static final Elevator elevator = new Elevator();
   public static final Arm arm = new Arm();
-  public static final Movement drive = new Movement();
+  // public static final Movement drive = new Movement();
 
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
   
   public static final ConsoleJoystick driver = new ConsoleJoystick(0);
   public static final ConsoleJoystick commander = new ConsoleJoystick(1);
+
+  public static JoystickButton a = new JoystickButton(driver, 1);
+  public static JoystickButton b = new JoystickButton(driver, 2);
+  public static JoystickButton x = new JoystickButton(driver, 3);
+  public static JoystickButton y = new JoystickButton(driver, 4);
+  public static POVButton up = new POVButton(driver, 0);
+  public static POVButton down = new POVButton(driver, 180);
+
+  private int pos = 0;
 
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
@@ -52,6 +68,15 @@ public class RobotContainer {
    * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
+    // up.whenPressed(new SetArmPos(arm.getPos()+20));
+    // down.whenPressed(new SetArmPos(arm.getPos()-20));
+    up.toggleWhenPressed(new SetArmPos(3000));
+    down.toggleWhenPressed(new SetArmPos(2500));
+    
+    // down.whenPressed(new SetArmPos(arm.getPos()-100));
+    a.toggleWhenPressed(new SetArmPos(3500));
+    b.toggleWhenPressed(new SetArmPos(1500));
+    x.toggleWhenPressed(new SetArmPos(2000));
   }
 
 

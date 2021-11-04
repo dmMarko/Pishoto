@@ -13,6 +13,8 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.Constants;
 import frc.robot.RobotContainer;
+import frc.robot.commands.arm.SetArmAngle;
+import frc.robot.commands.intake.Helpers.RaiseArmFromFloor;
 
 public class CollectDiskFromFloor extends CommandBase {
   /**
@@ -28,6 +30,7 @@ public class CollectDiskFromFloor extends CommandBase {
   public void initialize() {
     RobotContainer.intake.setHolderPistonValue(Value.kReverse);
     RobotContainer.intake.setFloorPistonValue(Value.kReverse);
+    CommandScheduler.getInstance().schedule(new SetArmAngle(Constants.ARM_FLOOR_ANGLE));
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -43,6 +46,7 @@ public class CollectDiskFromFloor extends CommandBase {
     CommandScheduler.getInstance().schedule(new WaitCommand(1));
     RobotContainer.intake.setPushHolderPistonValue(Value.kForward);
     RobotContainer.intake.setHolderPistonValue(Value.kForward);
+    CommandScheduler.getInstance().schedule(new RaiseArmFromFloor());
   }
 
   // Returns true when the command should end.
