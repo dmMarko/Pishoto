@@ -4,15 +4,18 @@
 
 package frc.robot.commands.Drive;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj2.command.Subsystem;
 import frc.LibPurple.control.PID254;
+import frc.LibPurple.utils.Utils;
 import frc.robot.RobotContainer;
 
 public class DriveJoystick extends CommandBase {
   /** Creates a new DriveJoystick. */
-  public DriveJoystick() {
+  public DriveJoystick(Subsystem drive) {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(RobotContainer.drive);
+    addRequirements(drive);
   }
 
   // Called when the command is initially scheduled.
@@ -22,23 +25,24 @@ public class DriveJoystick extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    double r2 = RobotContainer.driver.getR2();
-    double l2 = RobotContainer.driver.getL2();
-    double power = RobotContainer.driver.yGet();
+
+    double angle = RobotContainer.driver.xGet();
+    double power = Utils.deadband(-RobotContainer.driver.getRawAxis(1), 0.05);
+    
     
     double rightPower;
     double leftPower;
 
-    double ratio = l2 > r2 ? r2 / l2 : l2 / r2;
+    rightPower = power + angle;
+    leftPower = power - angle;
+    // rightPower = power;
+    // leftPower = power * ratio;
     
-    if (ratio > 0) {
-      rightPower = power;
-      leftPower = power * ratio;
-    } else {
-      leftPower = power;
-      rightPower = power * ratio;
-    }
-
+    SmartDashboard.putNumber("leftPower", leftPower);
+    SmartDashboard.putNumber("rightPower", rightPower);
+    SmartDashboard.putNumber("ratio", angle);
+    SmartDashboard.putNumber("leftEncoder", RobotContainer.drive.getLeftPos());
+    SmartDashboard.putNumber("rightEncoder", RobotContainer.drive.getRightPos());
     RobotContainer.drive.setPower(leftPower, rightPower);
   }
 

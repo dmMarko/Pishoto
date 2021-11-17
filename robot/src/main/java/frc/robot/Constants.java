@@ -22,4 +22,5 @@ public final class Constants {
     // The location are relative to the arm being far away from you.
     public static final PIDvalue leftSidePID = new PIDvalue(1, 0, 0);
     public static final PIDvalue rightSidePID = new PIDvalue(1, 0, 0);
+    public static final double oneRoundTicks = 2463;
 }

@@ -29,21 +29,21 @@ public class Intake extends SubsystemBase {
     forwardMotor = new WPI_TalonSRX(RobotMap.INTAKE_FORWARD_MOTOR_DEVICE_NUM);
     backwardMotor = new WPI_TalonSRX(RobotMap.INTAKE_BACKWARD_MOTOR_DEVICE_NUM);
 
-    holderPiston = new DoubleSolenoid(RobotMap.INTAKE_HOLDER_PISTON_FORWARD_CHANNLE, RobotMap.INTAKE_HOLDER_PISTON_REVERSE_CHANNLE);
-    pushHolderPiston = new DoubleSolenoid(RobotMap.INTAKE_PUSH_HOLDER_PISTON_FORWARD_CHANNLE, RobotMap.INTAKE_PUSH_HOLDER_PISTON_REVERSE_CHANNLE);
-    floorPiston = new DoubleSolenoid(RobotMap.INTAKE_FLOOR_PISTON_FORWARD_CHANNLE, RobotMap.INTAKE_FLOOR_PISTON_REVERSE_CHANNLE);
+    // holderPiston = new DoubleSolenoid(RobotMap.INTAKE_HOLDER_PISTON_FORWARD_CHANNLE, RobotMap.INTAKE_HOLDER_PISTON_REVERSE_CHANNLE);
+    // pushHolderPiston = new DoubleSolenoid(RobotMap.INTAKE_PUSH_HOLDER_PISTON_FORWARD_CHANNLE, RobotMap.INTAKE_PUSH_HOLDER_PISTON_REVERSE_CHANNLE);
+    // floorPiston = new DoubleSolenoid(RobotMap.INTAKE_FLOOR_PISTON_FORWARD_CHANNLE, RobotMap.INTAKE_FLOOR_PISTON_REVERSE_CHANNLE);
   }
 
   public void setHolderPistonValue(Value value){
-    holderPiston.set(value);
+    // holderPiston.set(value);
   }
 
   public void setPushHolderPistonValue(Value value){
-    pushHolderPiston.set(value);
+    // pushHolderPiston.set(value);
   }
 
   public void setFloorPistonValue(Value value){
-    floorPiston.set(value);
+    // floorPiston.set(value);
   }
 
   @Override
