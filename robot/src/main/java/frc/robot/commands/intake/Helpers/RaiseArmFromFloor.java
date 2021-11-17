@@ -8,8 +8,10 @@
 package frc.robot.commands.intake.Helpers;
 
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.Constants;
-import frc.robot.commands.arm.SetArmPos;
+import frc.robot.commands.arm.SetArmAngle;
+import frc.robot.commands.intake.Helpers.setPiston.Piston;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
@@ -21,6 +23,6 @@ public class RaiseArmFromFloor extends ParallelCommandGroup {
   public RaiseArmFromFloor() {
     // Add your commands in the super() call, e.g.
     // super(new FooCommand(), new BarCommand());super();
-    super(new SetFloorPiston(true), new SetArmPos(Constants.ARM_DEFAULT_POSITION));
+    super(new setPiston(true, Piston.Floor), new SetArmAngle(Constants.ARM_DEFAULT_ANGLE));
   }
 }

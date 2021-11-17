@@ -20,18 +20,16 @@ public class SetArmAngle extends CommandBase {
     addRequirements(requirements);
   }
 
-  public SetArmAngle(double armPos){
-    this.armAngle = armPos;
-    addRequirements(RobotContainer.arm);
+  public SetArmAngle(double armAngle) {
+    this.armAngle = armAngle;
+    // Use addRequirements() here to declare subsystem dependencies.
+    // addRequirements(RobotContainer.arm);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void execute() {
     RobotContainer.arm.setPositionByAngle(this.armAngle);
-    // double power = -RobotContainer.driver.getY();
-    // SmartDashboard.putNumber("ArmPower", power);
-    // RobotContainer.arm.setPower(power);
   }
 
   @Override

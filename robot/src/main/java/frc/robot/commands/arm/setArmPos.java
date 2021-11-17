@@ -22,21 +22,14 @@ public class SetArmPos extends CommandBase {
   private double armPos;
 
   public SetArmPos(double armPos, Subsystem requirements) {
-    if(armPos > Constants.ARM_MIN_INPUT || armPos < Constants.ARM_MAX_INPUT){
-      this.armPos = armPos;
-    } else {
-      this.armPos = 0;
-    }
+    this.armPos = armPos;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(requirements);
   }
 
-  public SetArmPos(double armPos){
-    if(armPos > Constants.ARM_MIN_INPUT || armPos < Constants.ARM_MAX_INPUT){
-      this.armPos = armPos;
-    } else {
-      this.armPos = RobotContainer.arm.getPos();
-    }
+  public SetArmPos(double armPos) {
+    this.armPos = armPos;
+
     addRequirements(RobotContainer.arm);
   }
 
@@ -44,9 +37,7 @@ public class SetArmPos extends CommandBase {
   @Override
   public void execute() {
     RobotContainer.arm.setPosition(this.armPos);
-    // double power = -RobotContainer.driver.getY();
     // SmartDashboard.putNumber("ArmPower", power);
-    // RobotContainer.arm.setPower(power);
   }
 
   @Override

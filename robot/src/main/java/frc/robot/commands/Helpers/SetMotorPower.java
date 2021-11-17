@@ -1,5 +1,3 @@
-// package frc.robot.commands.intake;
-
 // /*----------------------------------------------------------------------------*/
 // /* Copyright (c) 2019 FIRST. All Rights Reserved.                             */
 // /* Open Source Software - may be modified and shared by FRC teams. The code   */
@@ -7,18 +5,25 @@
 // /* the project.                                                               */
 // /*----------------------------------------------------------------------------*/
 
-// import edu.wpi.first.wpilibj2.command.CommandBase;
-// import edu.wpi.first.wpilibj2.command.Subsystem;
-// import frc.robot.Constants;
-// import frc.robot.RobotContainer;
+// package frc.robot.commands.Helpers;
 
-// public class CollectBall extends CommandBase {
+// import edu.wpi.first.wpilibj2.command.CommandBase;
+
+// public class SetMotorPower extends CommandBase {
+//   public enum Motor{
+//     ArmMotor,
+//     ElevatorMotors,
+//     IntakeUpperMotor,
+//     IntakeLowerMotor
+//   }
 //   /**
-//    * Creates a new CollectBall.
+//    * Creates a new SetMotorPower.
 //    */
-//   public CollectBall(Subsystem... requirements) {
+//   public SetMotorPower(Motor motor, double power) {
+//     switch motor{
+      
+//     }
 //     // Use addRequirements() here to declare subsystem dependencies.
-//     addRequirements(requirements);
 //   }
 
 //   // Called when the command is initially scheduled.
@@ -29,8 +34,6 @@
 //   // Called every time the scheduler runs while the command is scheduled.
 //   @Override
 //   public void execute() {
-//     RobotContainer.intake.spinLowerWheel(Constants.COLLECT_BALL_BOTTOM_SPIN_POWER);
-//     RobotContainer.intake.spinUpperWheel(Constants.COLLECT_BALL_TOP_SPIN_POWER);
 //   }
 
 //   // Called once the command ends or is interrupted.

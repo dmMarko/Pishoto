@@ -14,16 +14,30 @@ import frc.robot.RobotContainer;
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/latest/docs/software/commandbased/convenience-features.html
-public class SetFloorPiston extends InstantCommand {
-  private boolean forward;
-  public SetFloorPiston(boolean forward) {
+public class setPiston extends InstantCommand {
+  public enum Piston{
+    Floor,
+    Holder,
+    PushHolder
+  }
+
+  private Piston piston;
+  Value value;
+  public setPiston(boolean forward, Piston piston){
+    this.value = forward ? Value.kForward : Value.kReverse;
+    this.piston = piston;
     // Use addRequirements() here to declare subsystem dependencies.
-    this.forward = forward;
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    RobotContainer.intake.setFloorPistonValue(forward ? Value.kForward : Value.kReverse);
+    if (piston == Piston.Floor){
+      RobotContainer.intake.setFloorPistonValue(value);
+    } else if (piston == Piston.Holder) {
+      RobotContainer.intake.setHolderPistonValue(value);
+    } else if (piston == Piston.PushHolder) {
+      RobotContainer.intake.setPushHolderPistonValue(value);
+    }
   }
 }

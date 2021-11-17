@@ -20,28 +20,33 @@ import frc.LibPurple.control.PIDvalue;
  * wherever the constants are needed, to reduce verbosity.
  */
 public final class Constants {
+    // Game
+    public static final double TAKE_DISC_HIGHT = 10000;
+
+
+    // intake
+    public static final double COLLECT_DISC_FROM_FLOOR_SPIN_POWER = .5;
+    public static final double COLLECT_BALL_TOP_SPIN_POWER = -0;
+    public static final double COLLECT_BALL_BOTTOM_SPIN_POWER = 0;
+
     // drive
     // The location are relative to the arm being far away from you.
     public static final PIDvalue LEFT_SIDE_PID = new PIDvalue(1, 0, 0);
     public static final PIDvalue RIGHT_SIDE_PID = new PIDvalue(1, 0, 0);
 
-    public static final double COLLECT_BALL_TOP_SPIN_POWER = -0;
-    public static final double COLLECT_BALL_BOTTOM_SPIN_POWER = 0;
-    public static final double COLLECT_DISK_FROM_FLOOR_SPIN_POWER = 0;
-
+    // arm
+    public static final PIDvalue ARM_PID = new PIDvalue(.9, .0009, 0.4);
+    public static final double ARM_MIN_POS = 0;
+    public static final double ARM_MAX_POS = 3639;
+    public static final double ARM_MAX_POWER_FORWARD = .4;
+    public static final double ARM_MAX_POWER_REVERSE = -0.4;
     // arm positions
     public static final double ARM_FLOOR_ANGLE = 0;
-    public static final double ARM_DEFAULT_POSITION = 0 ;
-
-    // arm
-    public static final PIDvalue ARM_PID = new PIDvalue(1, 0, 0);
-    public static final double ARM_PID_KP = .5;
-    public static final double ARM_PID_KI = 0; //0.000013
-    public static final double ARM_PID_KD = 0;
-    // public static final double ARM_ZERO_POS = 0;
-    public static final double ARM_MIN_INPUT = 0;
-    public static final double ARM_MAX_INPUT = 3639;
-    // public static final double ARM_MIN_OUTPUT = 0;
-    // public static final double ARM_MAX_OUTPUT = 0;  
-
+    public static final double ARM_DEFAULT_ANGLE = 70 ;
+    
+    // elevator
+    public static final PIDvalue ELEVATOR_PID = new PIDvalue(.2, .00003, 0.1);
+    public static final double ELEVATOR_MAX_POS = -47500; //- 54150;    
+    public static final double ELEVATOR_MAX_POWER_FORWARD = .7;
+    public static final double ELEVATOR_MAX_POWER_REVERSE = -0.29;
 }

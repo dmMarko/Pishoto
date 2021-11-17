@@ -12,12 +12,20 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.LibPurple.sensors.ConsoleJoystick;
 import frc.robot.commands.ExampleCommand;
+import frc.robot.commands.Elevator.moveElevatorManual;
+import frc.robot.commands.Elevator.setElevatorPosition;
 import frc.robot.commands.arm.SetArmAngle;
 import frc.robot.commands.arm.SetArmPos;
+import frc.robot.commands.intake.CollectDiscFromFloor;
+import frc.robot.commands.intake.CollectDiskFromFloor;
+import frc.robot.commands.intake.OutTakeDisc;
+import frc.robot.commands.intake.TakeDisc;
+import frc.robot.commands.intake.Helpers.setPiston;
+import frc.robot.commands.intake.Helpers.setPiston.Piston;
 // import frc.robot.commands.intake.CollectDiskFromFloor;
 // import frc.robot.commands.intake.TakeDisc;
 import frc.robot.subsystems.Arm;
-// import frc.robot.subsystems.Elevator;
+import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.Intake;
 // import frc.robot.subsystems.Movement;
@@ -35,7 +43,7 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   public static final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
   public static final Intake intake = new Intake();
-  // public static final Elevator elevator = new Elevator();
+  public static final Elevator elevator = new Elevator();
   public static final Arm arm = new Arm();
   // public static final Movement drive = new Movement();
 
@@ -50,6 +58,8 @@ public class RobotContainer {
   public static JoystickButton y = new JoystickButton(driver, 4);
   public static POVButton up = new POVButton(driver, 0);
   public static POVButton down = new POVButton(driver, 180);
+  public static POVButton right = new POVButton(driver, 90);
+  public static POVButton left = new POVButton(driver, 270);
 
   private int pos = 0;
 
@@ -68,15 +78,15 @@ public class RobotContainer {
    * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    // up.whenPressed(new SetArmPos(arm.getPos()+20));
-    // down.whenPressed(new SetArmPos(arm.getPos()-20));
-    up.toggleWhenPressed(new SetArmPos(3000));
-    down.toggleWhenPressed(new SetArmPos(2500));
-    
-    // down.whenPressed(new SetArmPos(arm.getPos()-100));
-    a.toggleWhenPressed(new SetArmPos(3500));
-    b.toggleWhenPressed(new SetArmPos(1500));
-    x.toggleWhenPressed(new SetArmPos(2000));
+    a.toggleWhenPressed(new setPiston(false, Piston.Floor));
+    b.toggleWhenPressed(new CollectDiskFromFloor());
+    x.toggleWhenPressed(new OutTakeDisc(20000));
+    y.toggleWhenPressed(new TakeDisc());
+
+    up.toggleWhenPressed(new SetArmAngle(60));
+    down.toggleWhenPressed(new SetArmAngle(30));
+    right.toggleWhenPressed(new OutTakeDisc(4000));
+    left.toggleWhenPressed(new moveElevatorManual());
   }
 
 

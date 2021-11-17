@@ -5,44 +5,36 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.intake;
+package frc.robot.commands.Elevator;
 
-import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.RobotContainer;
-import frc.robot.commands.Elevator.setElevatorPosition;
-import frc.robot.commands.arm.SetArmAngle;
 
-public class OutTakeDisc extends CommandBase {
-  double elevatorPos;
-
+public class moveElevatorManual extends CommandBase {
   /**
-   * Creates a new OutTakeDisc.
+   * Creates a new moveElevatorManual.
    */
-  public OutTakeDisc(double elevatorPos) {
-    this.elevatorPos = elevatorPos;
+  public moveElevatorManual() {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(RobotContainer.intake, RobotContainer.arm, RobotContainer.elevator);
+    addRequirements(RobotContainer.elevator);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    CommandScheduler.getInstance().schedule(new setElevatorPosition(elevatorPos));
-    CommandScheduler.getInstance().schedule(new SetArmAngle(0));
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    double power = RobotContainer.driver.getY();
+    RobotContainer.elevator.setPower(power);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    RobotContainer.intake.setHolderPistonValue(Value.kReverse);
-    RobotContainer.intake.setPushHolderPistonValue(Value.kReverse);
+    RobotContainer.elevator.setPower(0);
   }
 
   // Returns true when the command should end.

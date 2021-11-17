@@ -5,44 +5,50 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.intake;
+package frc.robot.commands.Elevator;
 
-import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import edu.wpi.first.wpilibj2.command.Subsystem;
+import frc.LibPurple.utils.Utils;
+import frc.robot.Constants;
 import frc.robot.RobotContainer;
-import frc.robot.commands.Elevator.setElevatorPosition;
-import frc.robot.commands.arm.SetArmAngle;
 
-public class OutTakeDisc extends CommandBase {
-  double elevatorPos;
-
+public class setElevatorPosition extends CommandBase {
+  private double elevatorPos;
   /**
-   * Creates a new OutTakeDisc.
+   * Creates a new setElevatorPosition.
    */
-  public OutTakeDisc(double elevatorPos) {
+  public setElevatorPosition(double elevatorPos) {
     this.elevatorPos = elevatorPos;
+    
+    addRequirements(RobotContainer.elevator);
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(RobotContainer.intake, RobotContainer.arm, RobotContainer.elevator);
+  }
+
+  public setElevatorPosition(double elevatorPos, Subsystem... requirements) {
+    this.elevatorPos = elevatorPos;
+    addRequirements(requirements);
+    // Use addRequirements() here to declare subsystem dependencies.
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    CommandScheduler.getInstance().schedule(new setElevatorPosition(elevatorPos));
-    CommandScheduler.getInstance().schedule(new SetArmAngle(0));
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    RobotContainer.elevator.setPosition(elevatorPos);
+    // double power = RobotContainer.driver.getY();
+    // RobotContainer.elevator.setPower(power);
+
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    RobotContainer.intake.setHolderPistonValue(Value.kReverse);
-    RobotContainer.intake.setPushHolderPistonValue(Value.kReverse);
+    RobotContainer.elevator.setPower(0);
   }
 
   // Returns true when the command should end.

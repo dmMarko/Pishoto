@@ -12,7 +12,9 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.LibPurple.swerve.Utils.Utils;
 import frc.robot.RobotMap;
 
 public class Intake extends SubsystemBase {
@@ -31,10 +33,8 @@ public class Intake extends SubsystemBase {
     lowerMotor = new WPI_TalonSRX(RobotMap.INTAKE_LOWER_MOTOR_DEVICE_NUM);
 
     holderPiston = new DoubleSolenoid(RobotMap.INTAKE_HOLDER_PISTON_FORWARD_CHANNLE, RobotMap.INTAKE_HOLDER_PISTON_REVERSE_CHANNLE);
-    pushHolderPiston = new DoubleSolenoid(RobotMap.INTAKE_PUSH_HOLDER_PISTON_FORWARD_CHANNLE, 
-        RobotMap.INTAKE_PUSH_HOLDER_PISTON_REVERSE_CHANNLE);
-    floorPiston = new DoubleSolenoid(RobotMap.INTAKE_FLOOR_PISTON_FORWARD_CHANNLE,
-        RobotMap.INTAKE_FLOOR_PISTON_REVERSE_CHANNLE);
+    pushHolderPiston = new DoubleSolenoid(RobotMap.INTAKE_PUSH_HOLDER_PISTON_FORWARD_CHANNLE, RobotMap.INTAKE_PUSH_HOLDER_PISTON_REVERSE_CHANNLE);
+    floorPiston = new DoubleSolenoid(RobotMap.INTAKE_FLOOR_PISTON_FORWARD_CHANNLE, RobotMap.INTAKE_FLOOR_PISTON_REVERSE_CHANNLE);
   }
 
   public void setHolderPistonValue(Value value) {
@@ -49,16 +49,20 @@ public class Intake extends SubsystemBase {
     floorPiston.set(value);
   }
 
-  public void spinUpperWheel(double power) {
+  public void setPowerUpperWheel(double power) {
     upperMotor.set(ControlMode.PercentOutput, power);
   }
 
-  public void spinLowerWheel(double power) {
+  public void setPowerLowerWheel(double power) {
     lowerMotor.set(ControlMode.PercentOutput, power);
+    Utils.print("spinning lower wheel with power " + power);
   }
 
   @Override
   public void periodic() {
+    SmartDashboard.putBoolean("Floor Piston Pushed", floorPiston.get() == Value.kForward? true : false);
+    SmartDashboard.putBoolean("Holder Piston Pushed", holderPiston.get() == Value.kForward? true : false);
+    SmartDashboard.putBoolean("Push Holder Piston Pushed", pushHolderPiston.get() == Value.kForward? true : false);
     // This method will be called once per scheduler run
   }
 }
