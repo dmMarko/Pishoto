@@ -1,5 +1,3 @@
-package frc.robot.commands.intake;
-
 /*----------------------------------------------------------------------------*/
 /* Copyright (c) 2019 FIRST. All Rights Reserved.                             */
 /* Open Source Software - may be modified and shared by FRC teams. The code   */
@@ -7,18 +5,26 @@ package frc.robot.commands.intake;
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-import edu.wpi.first.wpilibj2.command.CommandBase;
-import edu.wpi.first.wpilibj2.command.Subsystem;
-import frc.robot.Constants;
-import frc.robot.RobotContainer;
+package frc.robot.commands.intake.Helpers;
 
-public class CollectBall extends CommandBase {
+import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.LibPurple.swerve.Utils.Utils;
+import frc.robot.RobotContainer;
+import edu.wpi.first.wpilibj.Timer;
+
+public class SpinWheel extends CommandBase {
+  double power;
+  double time;
+  double zeroTime;
   /**
-   * Creates a new CollectBall.
+   * Creates a new SpinWheel.
    */
-  public CollectBall(Subsystem... requirements) {
+  public SpinWheel(double power, double time) {
+    this.power = power;
+    this.time = time;
+    this.zeroTime = Timer.getFPGATimestamp();
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(requirements);
+
   }
 
   // Called when the command is initially scheduled.
@@ -29,20 +35,19 @@ public class CollectBall extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    RobotContainer.intake.setPowerLowerWheel(Constants.COLLECT_BALL_BOTTOM_SPIN_POWER);
-    RobotContainer.intake.setPowerUpperWheel(Constants.COLLECT_BALL_TOP_SPIN_POWER);
+    RobotContainer.intake.setPowerLowerWheel(power);
+    Utils.print("Time = " + Timer.getFPGATimestamp());
   }
   
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
     RobotContainer.intake.setPowerLowerWheel(0);
-    RobotContainer.intake.setPowerUpperWheel(0);
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return Timer.getFPGATimestamp() - zeroTime > time;
   }
 }

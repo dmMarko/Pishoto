@@ -1,44 +1,44 @@
-// /*----------------------------------------------------------------------------*/
-// /* Copyright (c) 2019 FIRST. All Rights Reserved.                             */
-// /* Open Source Software - may be modified and shared by FRC teams. The code   */
-// /* must be accompanied by the FIRST BSD license file in the root directory of */
-// /* the project.                                                               */
-// /*----------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------*/
+/* Copyright (c) 2019 FIRST. All Rights Reserved.                             */
+/* Open Source Software - may be modified and shared by FRC teams. The code   */
+/* must be accompanied by the FIRST BSD license file in the root directory of */
+/* the project.                                                               */
+/*----------------------------------------------------------------------------*/
 
-// package frc.robot.commands.intake;
+package frc.robot.commands.intake;
 
-// import edu.wpi.first.wpilibj2.command.CommandBase;
-// import frc.robot.Constants;
-// import frc.robot.RobotContainer;
+import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants;
+import frc.robot.RobotContainer;
 
-// public class DepositBall extends CommandBase {
-//   /**
-//    * Creates a new DepositBall.
-//    */
-//   public DepositBall() {
-//     // Use addRequirements() here to declare subsystem dependencies.
-//   }
+public class DepositBall extends CommandBase {
+  /**
+   * Creates a new DepositBall.
+   */
+  public DepositBall() {
+    // Use addRequirements() here to declare subsystem dependencies.
+  }
 
-//   // Called when the command is initially scheduled.
-//   @Override
-//   public void initialize() {
-//   }
+  // Called when the command is initially scheduled.
+  @Override
+  public void initialize() {
+  }
 
-//   // Called every time the scheduler runs while the command is scheduled.
-//   @Override
-//   public void execute() {
-//     RobotContainer.intake.spinLowerWheel(-Constants.COLLECT_BALL_BOTTOM_SPIN_POWER);
-//     RobotContainer.intake.spinUpperWheel(-Constants.COLLECT_BALL_TOP_SPIN_POWER);
-//   }
+  // Called every time the scheduler runs while the command is scheduled.
+  @Override
+  public void execute() {
+    RobotContainer.intake.setPowerLowerWheel(-Constants.COLLECT_BALL_BOTTOM_SPIN_POWER);
+    RobotContainer.intake.setPowerUpperWheel(-Constants.COLLECT_BALL_TOP_SPIN_POWER);
+  }
 
-//   // Called once the command ends or is interrupted.
-//   @Override
-//   public void end(boolean interrupted) {
-//   }
+  // Called once the command ends or is interrupted.
+  @Override
+  public void end(boolean interrupted) {
+  }
 
-//   // Returns true when the command should end.
-//   @Override
-//   public boolean isFinished() {
-//     return false;
-//   }
-// }
+  // Returns true when the command should end.
+  @Override
+  public boolean isFinished() {
+    return false;
+  }
+}

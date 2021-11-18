@@ -26,8 +26,8 @@ public final class Constants {
 
     // intake
     public static final double COLLECT_DISC_FROM_FLOOR_SPIN_POWER = .5;
-    public static final double COLLECT_BALL_TOP_SPIN_POWER = -0;
-    public static final double COLLECT_BALL_BOTTOM_SPIN_POWER = 0;
+    public static final double COLLECT_BALL_TOP_SPIN_POWER = -.5;
+    public static final double COLLECT_BALL_BOTTOM_SPIN_POWER = .5;
 
     // drive
     // The location are relative to the arm being far away from you.

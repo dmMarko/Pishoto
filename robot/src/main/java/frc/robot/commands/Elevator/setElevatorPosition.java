@@ -9,17 +9,41 @@ package frc.robot.commands.Elevator;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.Subsystem;
-import frc.LibPurple.utils.Utils;
-import frc.robot.Constants;
 import frc.robot.RobotContainer;
 
 public class setElevatorPosition extends CommandBase {
+  public enum Position{
+    Position1,
+    Position2,
+    Position3,
+    Position4
+  }
   private double elevatorPos;
   /**
    * Creates a new setElevatorPosition.
    */
   public setElevatorPosition(double elevatorPos) {
     this.elevatorPos = elevatorPos;
+    
+    addRequirements(RobotContainer.elevator);
+    // Use addRequirements() here to declare subsystem dependencies.
+  }
+
+  public setElevatorPosition(Position position) {
+    switch (position){
+      case Position1:
+        this.elevatorPos = 10000;
+        break;
+      case Position2:
+        this.elevatorPos = 20000;
+        break;
+      case Position3:
+        this.elevatorPos = 30000;
+        break;
+      case Position4:
+        this.elevatorPos = 40000;
+        break;
+    }
     
     addRequirements(RobotContainer.elevator);
     // Use addRequirements() here to declare subsystem dependencies.

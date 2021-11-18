@@ -16,7 +16,7 @@ import frc.robot.Constants;
 import frc.robot.RobotContainer;
 import frc.robot.commands.Elevator.setElevatorPosition;
 import frc.robot.commands.arm.SetArmAngle;
-import frc.robot.commands.intake.Helpers.RaiseArmFromFloor;
+import frc.robot.commands.intake.Helpers.SpinWheel;
 import frc.robot.commands.intake.Helpers.setPiston;
 import frc.robot.commands.intake.Helpers.setPiston.Piston;
 
@@ -49,11 +49,11 @@ public class CollectDiskFromFloor extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    // Utils.print("boaz very noaz");
     RobotContainer.intake.setPowerLowerWheel(0);
 
-    CommandScheduler.getInstance().schedule(new RaiseArmFromFloor().andThen(new WaitCommand(2)).andThen(new setPiston(true, Piston.PushHolder)).andThen(new setPiston(true, Piston.Holder)).andThen(new WaitCommand(1)).andThen(new setPiston(false, Piston.Floor)));
-    // Utils.print("pablo very tambal");
+    CommandScheduler.getInstance().schedule(new SetArmAngle(Constants.ARM_DEFAULT_ANGLE));
+    CommandScheduler.getInstance().schedule(new WaitCommand(1).andThen(new setPiston(true, Piston.Floor)).andThen(new WaitCommand(.2)).andThen(new setPiston(true, Piston.PushHolder)).andThen(new WaitCommand(.5)).andThen(new setPiston(true, Piston.Holder)).andThen(new WaitCommand(.5)).andThen(new setPiston(false, Piston.Floor)).andThen(new SpinWheel(-Constants.COLLECT_DISC_FROM_FLOOR_SPIN_POWER, 3)));
+    
   }
 
   // Returns true when the command should end.

@@ -16,7 +16,6 @@ import frc.robot.commands.Elevator.moveElevatorManual;
 import frc.robot.commands.Elevator.setElevatorPosition;
 import frc.robot.commands.arm.SetArmAngle;
 import frc.robot.commands.arm.SetArmPos;
-import frc.robot.commands.intake.CollectDiscFromFloor;
 import frc.robot.commands.intake.CollectDiskFromFloor;
 import frc.robot.commands.intake.OutTakeDisc;
 import frc.robot.commands.intake.TakeDisc;
@@ -78,7 +77,7 @@ public class RobotContainer {
    * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    a.toggleWhenPressed(new setPiston(false, Piston.Floor));
+    a.toggleWhenPressed(new setPiston(false, Piston.PushHolder));
     b.toggleWhenPressed(new CollectDiskFromFloor());
     x.toggleWhenPressed(new OutTakeDisc(20000));
     y.toggleWhenPressed(new TakeDisc());
