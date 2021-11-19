@@ -11,25 +11,21 @@ import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.RobotContainer;
-import frc.robot.commands.Elevator.setElevatorPosition;
 import frc.robot.commands.arm.SetArmAngle;
 
-public class OutTakeDisc extends CommandBase {
-  double elevatorPos;
+public class DepositDisc extends CommandBase {
 
   /**
    * Creates a new OutTakeDisc.
    */
-  public OutTakeDisc(double elevatorPos) {
-    this.elevatorPos = elevatorPos;
+  public DepositDisc() {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(RobotContainer.intake, RobotContainer.arm, RobotContainer.elevator);
+    addRequirements(RobotContainer.intake, RobotContainer.arm);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    CommandScheduler.getInstance().schedule(new setElevatorPosition(elevatorPos));
     CommandScheduler.getInstance().schedule(new SetArmAngle(0));
   }
 

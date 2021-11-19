@@ -16,11 +16,11 @@ import frc.robot.commands.arm.SetArmAngle;
 import frc.robot.commands.intake.Helpers.setPiston;
 import frc.robot.commands.intake.Helpers.setPiston.Piston;
 
-public class TakeDisc extends CommandBase {
+public class CollectDisc extends CommandBase {
   /**
    * Creates a new TakeDisc.
    */
-  public TakeDisc() {
+  public CollectDisc() {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(RobotContainer.intake, RobotContainer.arm, RobotContainer.elevator);
   }

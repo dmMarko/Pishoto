@@ -5,47 +5,41 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.intake;
+package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Constants;
 import frc.robot.RobotContainer;
 
-public class DepositBall extends CommandBase {
-  double time;
+public class TestMotor extends CommandBase {
+  double power;
   /**
-   * Creates a new DepositBall.
+   * Creates a new TestMotor.
    */
-  public DepositBall() {
-    time = Timer.getFPGATimestamp();
+  public TestMotor(double power) {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(RobotContainer.intake);
+    addRequirements(RobotContainer.test);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    RobotContainer.test.setPower(power);
   }
-
+  
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    RobotContainer.intake.setPowerLowerWheel(-2*Constants.COLLECT_BALL_BOTTOM_SPIN_POWER);
-    RobotContainer.intake.setPowerUpperWheel(-2*Constants.COLLECT_BALL_TOP_SPIN_POWER);
   }
   
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    RobotContainer.intake.setPowerLowerWheel(0);
-    RobotContainer.intake.setPowerUpperWheel(0);
+    RobotContainer.test.setPower(0);
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    // return Timer.getFPGATimestamp() - time > 50;
     return false;
   }
 }

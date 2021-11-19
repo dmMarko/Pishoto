@@ -26,20 +26,23 @@ public final class Constants {
 
     // intake
     public static final double COLLECT_DISC_FROM_FLOOR_SPIN_POWER = .5;
-    public static final double COLLECT_BALL_TOP_SPIN_POWER = -.5;
-    public static final double COLLECT_BALL_BOTTOM_SPIN_POWER = .5;
+
+    public static final double COLLECT_BALL_TOP_SPIN_POWER = 0.45;
+    public static final double COLLECT_BALL_BOTTOM_SPIN_POWER = -0.45;
 
     // drive
     // The location are relative to the arm being far away from you.
-    public static final PIDvalue LEFT_SIDE_PID = new PIDvalue(1, 0, 0);
-    public static final PIDvalue RIGHT_SIDE_PID = new PIDvalue(1, 0, 0);
+    public static final PIDvalue leftSidePID = new PIDvalue(1, 0, 0);
+    public static final PIDvalue rightSidePID = new PIDvalue(1, 0, 0);
+    public static final double oneRoundTicks = 2463;
+    public static final double COLLECT_DISK_FROM_FLOOR_SPIN_POWER = 0;
 
     // arm
     public static final PIDvalue ARM_PID = new PIDvalue(.9, .0009, 0.4);
     public static final double ARM_MIN_POS = 0;
     public static final double ARM_MAX_POS = 3639;
     public static final double ARM_MAX_POWER_FORWARD = .4;
-    public static final double ARM_MAX_POWER_REVERSE = -0.4;
+    public static final double ARM_MAX_POWER_REVERSE = -0.2;
     // arm positions
     public static final double ARM_FLOOR_ANGLE = 0;
     public static final double ARM_DEFAULT_ANGLE = 70 ;

@@ -4,14 +4,11 @@
 /* must be accompanied by the FIRST BSD license file in the root directory of */
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
-
 package frc.robot.commands.intake;
 
-import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
-import frc.LibPurple.swerve.Utils.Utils;
 import frc.robot.Constants;
 import frc.robot.RobotContainer;
 import frc.robot.commands.Elevator.setElevatorPosition;
@@ -20,11 +17,11 @@ import frc.robot.commands.intake.Helpers.SpinWheel;
 import frc.robot.commands.intake.Helpers.setPiston;
 import frc.robot.commands.intake.Helpers.setPiston.Piston;
 
-public class CollectDiskFromFloor extends CommandBase {
+public class CollectDiscFromFloor extends CommandBase {
   /**
    * Creates a new CollectDiskFromFloor.
    */
-  public CollectDiskFromFloor() {
+  public CollectDiscFromFloor() {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(RobotContainer.intake, RobotContainer.arm, RobotContainer.elevator);
   }
@@ -32,7 +29,6 @@ public class CollectDiskFromFloor extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    // Utils.print("pablo tambal");
     CommandScheduler.getInstance().schedule(new setPiston(false, Piston.PushHolder));
     CommandScheduler.getInstance().schedule(new setPiston(false, Piston.Holder));
     CommandScheduler.getInstance().schedule(new setPiston(false, Piston.Floor));
@@ -52,7 +48,8 @@ public class CollectDiskFromFloor extends CommandBase {
     RobotContainer.intake.setPowerLowerWheel(0);
 
     CommandScheduler.getInstance().schedule(new SetArmAngle(Constants.ARM_DEFAULT_ANGLE));
-    CommandScheduler.getInstance().schedule(new WaitCommand(1).andThen(new setPiston(true, Piston.Floor)).andThen(new WaitCommand(.2)).andThen(new setPiston(true, Piston.PushHolder)).andThen(new WaitCommand(.5)).andThen(new setPiston(true, Piston.Holder)).andThen(new WaitCommand(.5)).andThen(new setPiston(false, Piston.Floor)).andThen(new SpinWheel(-Constants.COLLECT_DISC_FROM_FLOOR_SPIN_POWER, 3)));
+    CommandScheduler.getInstance().schedule(new WaitCommand(.7).andThen(new setPiston(true, Piston.Floor)).andThen(new WaitCommand(.3)).andThen(new setPiston(true, Piston.PushHolder)));
+    CommandScheduler.getInstance().schedule(new WaitCommand(1.4).andThen(new setPiston(true, Piston.Holder)).andThen(new WaitCommand(.5)).andThen(new setPiston(false, Piston.Floor)).andThen(new SpinWheel(-Constants.COLLECT_DISC_FROM_FLOOR_SPIN_POWER, 3)));
     
   }
 

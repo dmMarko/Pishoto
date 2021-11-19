@@ -8,29 +8,32 @@ package frc.robot.commands.intake;
 /*----------------------------------------------------------------------------*/
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import edu.wpi.first.wpilibj2.command.Subsystem;
+import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.Constants;
 import frc.robot.RobotContainer;
+import frc.robot.commands.intake.Helpers.setPiston;
+import frc.robot.commands.intake.Helpers.setPiston.Piston;
 
 public class CollectBall extends CommandBase {
   /**
    * Creates a new CollectBall.
    */
-  public CollectBall(Subsystem... requirements) {
+  public CollectBall() {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(requirements);
+    addRequirements(RobotContainer.intake);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    CommandScheduler.getInstance().schedule(new setPiston(false, Piston.Holder).andThen(new setPiston(false,Piston.PushHolder)));
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    RobotContainer.intake.setPowerLowerWheel(Constants.COLLECT_BALL_BOTTOM_SPIN_POWER);
     RobotContainer.intake.setPowerUpperWheel(Constants.COLLECT_BALL_TOP_SPIN_POWER);
+    RobotContainer.intake.setPowerLowerWheel(Constants.COLLECT_BALL_BOTTOM_SPIN_POWER);
   }
   
   // Called once the command ends or is interrupted.

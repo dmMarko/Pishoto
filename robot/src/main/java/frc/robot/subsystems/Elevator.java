@@ -64,10 +64,10 @@ public class Elevator extends SubsystemBase {
   }
 
   public void setPosition(double pos) {
-    // if (pos < Constants.ELEVATOR_MAX_POS) {
-    //   masterMotor.set(ControlMode.Position, Constants.ELEVATOR_MAX_POS);
-    //   return;
-    // }
+    if (pos < Constants.ELEVATOR_MAX_POS) {
+      masterMotor.set(ControlMode.Position, Constants.ELEVATOR_MAX_POS);
+      return;
+    }
 
     masterMotor.set(ControlMode.Position, pos);
   }

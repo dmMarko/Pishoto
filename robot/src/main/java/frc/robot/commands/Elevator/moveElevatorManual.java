@@ -27,7 +27,7 @@ public class moveElevatorManual extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    double power = RobotContainer.driver.getY();
+    double power = RobotContainer.driver.getRawAxis(5);
     RobotContainer.elevator.setPower(power);
   }
 
